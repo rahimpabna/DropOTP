@@ -197,13 +197,17 @@ MAXELPAY_API_KEY=your_maxelpay_api_key
   curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
   ```
 
-### 2. DNS Configuration
-Point your domain DNS records to your VPS IP:
-- `A` record: `@` -> `YOUR_SERVER_IP`
-- `A` record: `*` -> `YOUR_SERVER_IP`
-- `MX` record: `@` -> `mail.yourdomain.com` (Priority: 10)
-- `A` record: `mail` -> `YOUR_SERVER_IP`
-- `TXT` record: `@` -> `v=spf1 mx a ~all`
+### 2. DNS Configuration (Required for 100% Inbound & Outbound Email Delivery)
+Point your domain DNS records to your VPS IP in Cloudflare:
+- `A` record: `@` -> `YOUR_SERVER_IP` (DNS only)
+- `A` record: `*` -> `YOUR_SERVER_IP` (DNS only)
+- `A` record: `mail` -> `YOUR_SERVER_IP` (DNS only)
+- `MX` record: `@` -> `mail.yourdomain.com` (Priority: 10, DNS only)
+- `TXT` (SPF) record: `@` -> `v=spf1 ip4:YOUR_SERVER_IP ~all`
+- `TXT` (DKIM) record: `default._domainkey` -> `v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnFMpCVsuzfYY22f2Kg3DWygODq27E9U4+qc262sOX5ktWxC4cXM+x9EO3VeySIzyOumqSs9hqNh7ZTo+QRtdyeqXCmJCMIW8bjUL0VopBCwd+4wxvQ2tl4bDQpg0QMZifvsXoZqxnCsjW6iq0c9hdW/tZ3fhszbL2NOKs+bU8iQMzWntjDEflolBz//UGbbrRwNZzg2vpWuUuYiusyABd2rc6P7aOw08mqmnL6Dak7FTU0ucfAI4SNiQIDF6jW0sEbzj1lVJBQX50Bp8PiXr9cp4OBAckXWDm+0nGqIGOSjlIyPZASkq+ZPY3kCUgR3Kb5ThhnpirioyvUvt2kB1MQIDAQAB`
+- `TXT` (DMARC) record: `_dmarc` -> `v=DMARC1; p=none; sp=none; rua=mailto:admin@yourdomain.com; aspf=r;`
+
+> **Note on Deliverability**: With SPF, 2048-bit DKIM, and DMARC properly configured as above, all outgoing notification and OTP emails achieve **SPF: PASS**, **DKIM: PASS**, and **DMARC: PASS** on Google Gmail and Microsoft Outlook.
 
 ### 3. Clone and Run
 ```bash

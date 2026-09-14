@@ -82,6 +82,35 @@ export class OutboundMailService {
       try {
         console.log(`[OutboundMail] Attempting direct MX delivery to ${to} via ${mxHost}:25...`);
         
+        const dkimPrivateKey = `-----BEGIN PRIVATE KEY-----
+MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCcUykJWy7N9hjb
+Z/YqDcNbKA4OrbsT1Tj6pzbraw5fmS1bELhxcz7H0Q7dV7JIjPI66apKz2Go2Htl
+Oj5BG13J6pcKYkIwhbxuNQvRWikELB37jDG9Da2XhsNCmDRAxmJ++xehmrGcKyNb
+qKrRz2F1b+1nd+GzNsvY04qz5tTyJAzNae2MMR+WiUHP/9QZtutHA1nODa+la5S5
+iK6zIAF3atzo/to7DTyaqacvoNqTsVNTS5x8AjhI2JAgMXqNbSwRvOPWVUkFBfnQ
+Gnw+Jev1yng4EByRdYOb7ScaogY5KOUjI9kBKSr5k9jeQJSBHcpvlOGGemKuKjK9
+S+3aQHUxAgMBAAECggEALq4eiO6zkUk1rv7iYThu55+UYwm53XhEZYTdP3tedWmW
+Q6VAjpAtZRmmaK4xTLzZ8IGqGmDG9tZ+MoIr6OE1JoBoze79eOPWmso4VzGnIdnS
+sjTw/VVCSwcw84fjwpv6+ZQdQGKjOtEe49X//FsC7UCZEdaYjR2FzZ+NwZ7iY9Os
+M9JMC8l9Oanz0s9+CX3ujRPceEC1NMuBb2qdwl6DXI7gJ4nmwtMFtFI2j+iXjTdX
+wgNBLSe3GOioLVnw2b2Q5YCaVMpD5nsXkAolxXwFIPi9IEkeJfgvaie2EgS0Z+Aq
+NZY+39Y6x889nSNDggMAfxHgHUNjbUoO/ZZZE8RSqQKBgQC5TI81dRFOPRTxn8WD
+xEF1NFdod+EhjGksLVZPvSgfdjc/M8U75U3srmBRGErXGQBTY0+s6egcsnMRyEWo
+hrNYxav5v9+xBOGq+q7jmDhlJdkwsgFm29ALrzc7b/HkKXxZ92wUfUA5DZdUwt4J
+fiilSKhyeRChPp99+HNBmhCsMwKBgQDX+H0p7BfTMR9ezaFbVdoHfz2YYfU6fSZu
+Xqxgn1CGXp/yE5erMokSB/er7b+qMG44Z49Edm/Crd4P8AdDIYLFasLftYuxKLuo
+S2q8QpdxqPZNIpxSWzlzmneZO3YL+PUeBiswxkvArvmlTV63AAwBJsmzX7oQwGQC
+FW99rhO1CwKBgA+qpm0JodXwmiW3sXZrkHE9ZKqDgDha68V9a8/AGXVXhGJGmUVw
+JL9/GsugdytqhLmIKwNen25VtB7rxN/zy5QU2m56R4pq9D2FhmXdx97dbViNpEqz
+CQsD3HKdC2GUFFxy6+Nrl5N7T7Et7KH21a7rzrom/D310nxPFkeUpBY7AoGANFWR
+tvvwFgw8RtPbeu+F4vUxbuCl9SNokaw9ZziT4cvCRH387c5UKttlZ/M307ziqKZn
+sDZnBKzvN7t5dwoCz2X8jQtIK4jsWG7WEYKtgixoau6tJMPYWyweOTKQe3w7oafr
+BWm355w/AJCMGBpZzlmg3OeghfipA1xAZRsuyVsCgYAychwp/wCuv3CYvX50cSnX
+ShWJAfP5we3IxTTj49wbo1SvKJoPBOAznaIAo29ujnOpcpcL9XZ92D1vWBwT1UO4
+q4VErPqfFBGQ9cxUiwmmk857Ygqpao9iHcib1CRfZwmg/RCGwnKTGGe1TJS4TDBa
+nVx+Ab9/YM7sSzetfeaE+g==
+-----END PRIVATE KEY-----`;
+
         const transporter = nodemailer.createTransport({
           host: mxHost,
           port: 25,
@@ -89,6 +118,11 @@ export class OutboundMailService {
           name: 'dropotp.com',
           tls: {
             rejectUnauthorized: false, // allow servers with self-signed or wildcard TLS
+          },
+          dkim: {
+            domainName: 'dropotp.com',
+            keySelector: 'default',
+            privateKey: dkimPrivateKey,
           },
           connectionTimeout: 10000,
           greetingTimeout: 10000,
@@ -99,7 +133,7 @@ export class OutboundMailService {
           from: `"${fromName}" <${fromEmail}>`,
           to: to,
           subject: options.subject,
-          text: options.text || '',
+          text: options.text || (options.html ? options.html.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim() : ''),
           html: options.html,
           headers: {
             'X-Mailer': 'DropOTP Mail Engine',
