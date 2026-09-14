@@ -1,0 +1,577 @@
+[
+  {
+    "name": "Tinder",
+    "code": "tinder",
+    "icon": "https://smsbower.app/img/services/3.svg?timestamp=1779428597"
+  },
+  {
+    "name": "Instagram",
+    "code": "instagram",
+    "icon": "https://smsbower.app/img/services/4.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Telegram",
+    "code": "telegram",
+    "icon": "https://smsbower.app/img/services/5.svg?timestamp=1772558737"
+  },
+  {
+    "name": "Facebook",
+    "code": "facebook",
+    "icon": "https://smsbower.app/img/services/9.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Twitter",
+    "code": "twitter",
+    "icon": "https://smsbower.app/img/services/20.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Microsoft",
+    "code": "microsoft",
+    "icon": "https://smsbower.app/img/services/25.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Amazon",
+    "code": "amazon",
+    "icon": "https://smsbower.app/img/services/28.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Craigslist",
+    "code": "craigslist",
+    "icon": "https://smsbower.app/img/services/32.svg?timestamp=1776843152"
+  },
+  {
+    "name": "Tiktok",
+    "code": "tiktok",
+    "icon": "https://smsbower.app/img/services/36.svg?timestamp=1773214522"
+  },
+  {
+    "name": "Shopee",
+    "code": "shopee",
+    "icon": "https://smsbower.app/img/services/37.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Discord",
+    "code": "discord",
+    "icon": "https://smsbower.app/img/services/61.svg?timestamp=1748774536"
+  },
+  {
+    "name": "WeChat",
+    "code": "wechat",
+    "icon": "https://smsbower.app/img/services/69.svg?timestamp=1772558818"
+  },
+  {
+    "name": "Biglion",
+    "code": "biglion",
+    "icon": "https://smsbower.app/img/services/95.svg?timestamp=1756098890"
+  },
+  {
+    "name": "OLX",
+    "code": "olx",
+    "icon": "https://smsbower.app/img/services/150.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Twitch",
+    "code": "twitch",
+    "icon": "https://smsbower.app/img/services/172.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Tokopedia",
+    "code": "tokopedia",
+    "icon": "https://smsbower.app/img/services/174.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Yandex",
+    "code": "yandex",
+    "icon": "https://smsbower.app/img/services/185.svg?timestamp=1756098974"
+  },
+  {
+    "name": "Apple",
+    "code": "apple",
+    "icon": "https://smsbower.app/img/services/195.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Vinted",
+    "code": "vinted",
+    "icon": "https://smsbower.app/img/services/196.svg?timestamp=1776757326"
+  },
+  {
+    "name": "Snapchat",
+    "code": "snapchat",
+    "icon": "https://smsbower.app/img/services/235.svg?timestamp=1778359846"
+  },
+  {
+    "name": "Hinge",
+    "code": "hinge",
+    "icon": "https://smsbower.app/img/services/240.svg?timestamp=1778761764"
+  },
+  {
+    "name": "OpenAI (ChatGPT)",
+    "code": "openaichatgpt",
+    "icon": "https://smsbower.app/img/services/247.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Leboncoin",
+    "code": "leboncoin",
+    "icon": "https://smsbower.app/img/services/269.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Fiverr",
+    "code": "fiverr",
+    "icon": "https://smsbower.app/img/services/271.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Yemeksepeti",
+    "code": "yemeksepeti",
+    "icon": "https://smsbower.app/img/services/292.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Linode",
+    "code": "linode",
+    "icon": "https://smsbower.app/img/services/294.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Wolt",
+    "code": "wolt",
+    "icon": "https://smsbower.app/img/services/295.svg?timestamp=1748774536"
+  },
+  {
+    "name": "OfferUp",
+    "code": "offerup",
+    "icon": "https://smsbower.app/img/services/328.webp?timestamp=1748774536"
+  },
+  {
+    "name": "Depop",
+    "code": "depop",
+    "icon": "https://smsbower.app/img/services/342.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Betfair",
+    "code": "betfair",
+    "icon": "https://smsbower.app/img/services/371.svg?timestamp=1748774536"
+  },
+  {
+    "name": "IRCTC",
+    "code": "irctc",
+    "icon": "https://smsbower.app/img/services/381.svg?timestamp=1750870705"
+  },
+  {
+    "name": "Feeld",
+    "code": "feeld",
+    "icon": "https://smsbower.app/img/services/422.svg?timestamp=1748774536"
+  },
+  {
+    "name": "AliExpress",
+    "code": "aliexpress",
+    "icon": "https://smsbower.app/img/services/567.svg?timestamp=1748774536"
+  },
+  {
+    "name": "BLIBLI",
+    "code": "blibli",
+    "icon": "https://smsbower.app/img/services/607.svg?timestamp=1748774536"
+  },
+  {
+    "name": "PaddyPower",
+    "code": "paddypower",
+    "icon": "https://smsbower.app/img/services/645.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Alfagift",
+    "code": "alfagift",
+    "icon": "https://smsbower.app/img/services/692.svg?timestamp=1751359655"
+  },
+  {
+    "name": "Twilio",
+    "code": "twilio",
+    "icon": "https://smsbower.app/img/services/697.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Trendyol",
+    "code": "trendyol",
+    "icon": "https://smsbower.app/img/services/710.webp?timestamp=1748774536"
+  },
+  {
+    "name": "Hepsiburadacom",
+    "code": "hepsiburadacom",
+    "icon": "https://smsbower.app/img/services/747.webp?timestamp=1748774536"
+  },
+  {
+    "name": "Subito",
+    "code": "subito",
+    "icon": "https://smsbower.app/img/services/771.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Kleinanzeigen",
+    "code": "kleinanzeigen",
+    "icon": "https://smsbower.app/img/services/777.svg?timestamp=1762345001"
+  },
+  {
+    "name": "ANY EMAIL",
+    "code": "anyemail",
+    "icon": "https://smsbower.app/img/services/781.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Walmart",
+    "code": "walmart",
+    "icon": "https://smsbower.app/img/services/793.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Claude",
+    "code": "claude",
+    "icon": "https://smsbower.app/img/services/802.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Beboo",
+    "code": "beboo",
+    "icon": "https://smsbower.app/img/services/848.svg?timestamp=1748774536"
+  },
+  {
+    "name": "BPJSTK",
+    "code": "bpjstk",
+    "icon": "https://smsbower.app/img/services/947.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Ubisoft",
+    "code": "ubisoft",
+    "icon": "https://smsbower.app/img/services/964.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Brevo",
+    "code": "brevo",
+    "icon": "/img/noimage.svg"
+  },
+  {
+    "name": "Ankama",
+    "code": "ankama",
+    "icon": "/img/noimage.svg"
+  },
+  {
+    "name": "Vercel",
+    "code": "vercel",
+    "icon": "https://smsbower.app/img/services/1077.svg?timestamp=1773735363"
+  },
+  {
+    "name": "Nuum.ru",
+    "code": "nuumru",
+    "icon": "https://smsbower.app/img/services/1191.svg?timestamp=1748774536"
+  },
+  {
+    "name": "DNS",
+    "code": "dns",
+    "icon": "https://smsbower.app/img/services/1208.svg?timestamp=1756099627"
+  },
+  {
+    "name": "Loloo",
+    "code": "loloo",
+    "icon": "https://smsbower.app/img/services/1209.svg?timestamp=1748774536"
+  },
+  {
+    "name": "OLXkz",
+    "code": "olxkz",
+    "icon": "https://smsbower.app/img/services/1211.svg?timestamp=1748774536"
+  },
+  {
+    "name": "OLXua",
+    "code": "olxua",
+    "icon": "https://smsbower.app/img/services/1212.svg?timestamp=1748774536"
+  },
+  {
+    "name": "OLXpl",
+    "code": "olxpl",
+    "icon": "https://smsbower.app/img/services/1213.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Talkatone",
+    "code": "talkatone",
+    "icon": "https://smsbower.app/img/services/1214.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Etsy",
+    "code": "etsy",
+    "icon": "https://smsbower.app/img/services/1215.svg?timestamp=1748774536"
+  },
+  {
+    "name": "OLXro",
+    "code": "olxro",
+    "icon": "https://smsbower.app/img/services/1216.svg?timestamp=1748774536"
+  },
+  {
+    "name": "OLXbg",
+    "code": "olxbg",
+    "icon": "https://smsbower.app/img/services/1217.svg?timestamp=1748774536"
+  },
+  {
+    "name": "OLXpt",
+    "code": "olxpt",
+    "icon": "https://smsbower.app/img/services/1218.svg?timestamp=1748774536"
+  },
+  {
+    "name": "GitHub",
+    "code": "github",
+    "icon": "https://smsbower.app/img/services/1219.svg?timestamp=1748774536"
+  },
+  {
+    "name": "OLXuz",
+    "code": "olxuz",
+    "icon": "https://smsbower.app/img/services/1220.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Facebook business",
+    "code": "facebookbusiness",
+    "icon": "https://smsbower.app/img/services/1221.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Streamlabs",
+    "code": "streamlabs",
+    "icon": "https://smsbower.app/img/services/1222.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Unstop",
+    "code": "unstop",
+    "icon": "https://smsbower.app/img/services/1223.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Swarail",
+    "code": "swarail",
+    "icon": "https://smsbower.app/img/services/1225.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Tumblr",
+    "code": "tumblr",
+    "icon": "https://smsbower.app/img/services/1262.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Audible",
+    "code": "audible",
+    "icon": "https://smsbower.app/img/services/1263.svg?timestamp=1748774536"
+  },
+  {
+    "name": "RapidApi",
+    "code": "rapidapi",
+    "icon": "https://smsbower.app/img/services/1264.svg?timestamp=1748774536"
+  },
+  {
+    "name": "SerpApi",
+    "code": "serpapi",
+    "icon": "https://smsbower.app/img/services/1265.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Bosslike",
+    "code": "bosslike",
+    "icon": "https://smsbower.app/img/services/1266.svg?timestamp=1748774536"
+  },
+  {
+    "name": "FMCPay",
+    "code": "fmcpay",
+    "icon": "https://smsbower.app/img/services/1267.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Wallapop",
+    "code": "wallapop",
+    "icon": "https://smsbower.app/img/services/1269.svg?timestamp=1748774536"
+  },
+  {
+    "name": "MMLive",
+    "code": "mmlive",
+    "icon": "https://smsbower.app/img/services/1270.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Reddit",
+    "code": "reddit",
+    "icon": "https://smsbower.app/img/services/1271.svg?timestamp=1748774536"
+  },
+  {
+    "name": "Skills",
+    "code": "skills",
+    "icon": "https://smsbower.app/img/services/1295.svg?timestamp=1748875790"
+  },
+  {
+    "name": "Cursor",
+    "code": "cursor",
+    "icon": "https://smsbower.app/img/services/1298.png?timestamp=1749122604"
+  },
+  {
+    "name": "Aws",
+    "code": "aws",
+    "icon": "https://smsbower.app/img/services/1299.jpg?timestamp=1750094453"
+  },
+  {
+    "name": "Quoka",
+    "code": "quoka",
+    "icon": "https://smsbower.app/img/services/1303.svg?timestamp=1751359673"
+  },
+  {
+    "name": "500px",
+    "code": "500px",
+    "icon": "https://smsbower.app/img/services/1304.svg?timestamp=1751359535"
+  },
+  {
+    "name": "QQLive",
+    "code": "qqlive",
+    "icon": "https://smsbower.app/img/services/1330.svg?timestamp=1773735270"
+  },
+  {
+    "name": "Clubgg",
+    "code": "clubgg",
+    "icon": "https://smsbower.app/img/services/1331.svg?timestamp=1774361334"
+  },
+  {
+    "name": "PolloAI",
+    "code": "polloai",
+    "icon": "https://smsbower.app/img/services/1332.svg?timestamp=1773735204"
+  },
+  {
+    "name": "Toluna",
+    "code": "toluna",
+    "icon": "https://smsbower.app/img/services/1333.svg?timestamp=1773735338"
+  },
+  {
+    "name": "Kick",
+    "code": "kick",
+    "icon": "https://smsbower.app/img/services/1334.svg?timestamp=1773735043"
+  },
+  {
+    "name": "Neosurf",
+    "code": "neosurf",
+    "icon": "https://smsbower.app/img/services/1346.svg?timestamp=1773735122"
+  },
+  {
+    "name": "Kolotibablo",
+    "code": "kolotibablo",
+    "icon": "https://smsbower.app/img/services/1356.svg?timestamp=1773735065"
+  },
+  {
+    "name": "Research 360",
+    "code": "research360",
+    "icon": "https://smsbower.app/img/services/1362.svg?timestamp=1773142847"
+  },
+  {
+    "name": "Wamba",
+    "code": "wamba",
+    "icon": "https://smsbower.app/img/services/1367.svg?timestamp=1773735378"
+  },
+  {
+    "name": "Nielsen",
+    "code": "nielsen",
+    "icon": "https://smsbower.app/img/services/1377.svg?timestamp=1774595374"
+  },
+  {
+    "name": "Telnyx",
+    "code": "telnyx",
+    "icon": "https://smsbower.app/img/services/1378.svg?timestamp=1774595383"
+  },
+  {
+    "name": "Grok",
+    "code": "grok",
+    "icon": "https://smsbower.app/img/services/1379.svg?timestamp=1774595341"
+  },
+  {
+    "name": "Brevistay",
+    "code": "brevistay",
+    "icon": "https://smsbower.app/img/services/1385.svg?timestamp=1778858977"
+  },
+  {
+    "name": "DigitalOcean",
+    "code": "digitalocean",
+    "icon": "/img/noimage.svg"
+  },
+  {
+    "name": "OneOne",
+    "code": "oneone",
+    "icon": "https://smsbower.app/img/services/1399.svg?timestamp=1778594286"
+  },
+  {
+    "name": "Textnow",
+    "code": "textnow",
+    "icon": "https://smsbower.app/img/services/1402.svg?timestamp=1788444616"
+  },
+  {
+    "name": "Angi",
+    "code": "angi",
+    "icon": "https://smsbower.app/img/services/1413.svg?timestamp=1781012191"
+  },
+  {
+    "name": "Black Forest Labs",
+    "code": "blackforestlabs",
+    "icon": "/img/noimage.svg"
+  },
+  {
+    "name": "CWG",
+    "code": "cwg",
+    "icon": "https://smsbower.app/img/services/1422.svg?timestamp=1781012259"
+  },
+  {
+    "name": "Oxinchain",
+    "code": "oxinchain",
+    "icon": "/img/noimage.svg"
+  },
+  {
+    "name": "WorkUA",
+    "code": "workua",
+    "icon": "/img/noimage.svg"
+  },
+  {
+    "name": "Mulerun",
+    "code": "mulerun",
+    "icon": "https://smsbower.app/img/services/1427.svg?timestamp=1783936408"
+  },
+  {
+    "name": "Qzino",
+    "code": "qzino",
+    "icon": "https://smsbower.app/img/services/1429.svg?timestamp=1783936357"
+  },
+  {
+    "name": "Hindustan",
+    "code": "hindustan",
+    "icon": "https://smsbower.app/img/services/1430.svg?timestamp=1783936391"
+  },
+  {
+    "name": "Owlproxy",
+    "code": "owlproxy",
+    "icon": "https://smsbower.app/img/services/1442.svg?timestamp=1788444639"
+  },
+  {
+    "name": "NextOtp",
+    "code": "nextotp",
+    "icon": "https://smsbower.app/img/services/1444.svg?timestamp=1788444713"
+  },
+  {
+    "name": "TextMe",
+    "code": "textme",
+    "icon": "https://smsbower.app/img/services/1446.svg?timestamp=1788444858"
+  },
+  {
+    "name": "KVB",
+    "code": "kvb",
+    "icon": "https://smsbower.app/img/services/1447.svg?timestamp=1788444676"
+  },
+  {
+    "name": "Quarkip",
+    "code": "quarkip",
+    "icon": "https://smsbower.app/img/services/1450.svg?timestamp=1788444516"
+  },
+  {
+    "name": "Hotlive",
+    "code": "hotlive",
+    "icon": "https://smsbower.app/img/services/1451.svg?timestamp=1788444820"
+  },
+  {
+    "name": "Prime video",
+    "code": "primevideo",
+    "icon": "https://smsbower.app/img/services/1455.svg?timestamp=1788444573"
+  },
+  {
+    "name": "Tiktok shop",
+    "code": "tiktokshop",
+    "icon": "https://smsbower.app/img/services/1456.svg?timestamp=1788444594"
+  },
+  {
+    "name": "Binance",
+    "code": "binance",
+    "icon": "/img/noimage.svg"
+  },
+  {
+    "name": "Piattos",
+    "code": "piattos",
+    "icon": "/img/noimage.svg"
+  }
+]

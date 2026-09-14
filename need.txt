@@ -1,0 +1,37 @@
+You are an expert Full-Stack Software Engineer and DevOps Architect.
+Build a complete production-ready MVP for an "Online Email Address Rental & Instant OTP Reception SaaS" similar to SMSBower.
+
+System Requirements & Tech Stack:
+1. Backend: Node.js (Fastify or Express) with TypeScript.
+2. Inbound Mail Server (SMTP): Haraka SMTP or Inbound Node.js SMTP service:
+   - Configured for catch-all emails across configured domains.
+   - Parses incoming MIME emails in real-time.
+   - Extracts OTP codes using robust Regex patterns (\b\d{4,8}\b).
+   - Supports optional upstream proxy configuration (HTTP/SOCKS5) for incoming/outgoing routing if specified.
+3. Real-Time Push: WebSockets (Socket.io) or Server-Sent Events (SSE) to push extracted OTPs directly to the frontend without any page reload.
+4. Frontend & Admin Dashboard: React with Refine (https://refine.dev/) and Tailwind CSS.
+   - User UI: Domain selection, service selection (Gmail, Telegram, Tinder, Facebook, etc.), temporary email generator, countdown timer, live OTP reception feed.
+   - Admin UI: Domain management (add/edit domains, set as public/private, set pricing), user management, transaction logs, revenue dashboard.
+5. Wallet & Financial Ledger:
+   - Internal wallet balance system (Credits/Debits).
+   - Anti-fraud double-entry transaction records.
+   - Payment gateway webhook processors for:
+     * bKash (Tokenized Checkout)
+     * Nagad
+     * paymento.io
+     * maxelpay.com
+6. Database & Cache:
+   - PostgreSQL (for Users, Wallets, Transactions, Domain configs, Rental sessions).
+   - Redis (for session timeouts, rate-limiting, and Pub/Sub for WebSockets).
+7. Target Environment:
+   - Host: Ubuntu Linux (2 vCore, 2GB RAM, 60GB SSD).
+   - Architecture: Docker Compose containing containers for Postgres, Redis, Haraka/SMTP Worker, Backend API, and Frontend.
+   - Must include a shell script (setup_swap.sh) to configure 2GB swap space to optimize 2GB RAM.
+
+Deliverables:
+1. Dockerfile & docker-compose.yml configuration with resource limits.
+2. PostgreSQL database migration schema (Prisma or TypeORM).
+3. Inbound SMTP Parser script that extracts OTP and publishes to Redis Pub/Sub.
+4. Backend API with REST endpoints and WebSocket handlers.
+5. Frontend codebase using React + Refine.
+6. Step-by-step terminal execution instructions to build and run the stack on an Ubuntu VPS.

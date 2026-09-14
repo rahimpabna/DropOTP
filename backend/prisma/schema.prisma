@@ -1,0 +1,296 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum TransactionType {
+  CREDIT
+  DEBIT
+  HOLD
+  RELEASE
+  REFUND
+}
+
+enum RentalStatus {
+  WAITING_CODE // 1: Waiting for email / code
+  CANCELLED    // 2: Cancelled by user or auto-timeout before code
+  COMPLETED    // 3: Successfully closed after OTP received & funds settled
+  WAITING_NEXT // 5: Waiting for additional code on same email
+  EXPIRED      // Timed out without code
+}
+
+enum PaymentGateway {
+  BKASH
+  NAGAD
+  PAYMENTO
+  MAXELPAY
+  MANUAL
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  CANCELLED
+}
+
+enum EmailAccountStatus {
+  ACTIVE
+  DEAD
+  CHECKING
+  BUSY
+}
+
+model User {
+  id                   String    @id @default(uuid())
+  email                String    @unique
+  username             String    @unique
+  displayName          String?
+  passwordHash         String
+  role                 Role      @default(USER)
+  apiKey               String    @unique @default(uuid())
+  webhookUrl           String?
+  isActive             Boolean   @default(true)
+  isEmailVerified      Boolean   @default(false)
+  emailVerificationOtp String?
+  otpExpiresAt         DateTime?
+  phone                String?
+  country              String?
+  address              String?
+  birthDate            String?
+  lastIp               String?
+  status               String    @default("ACTIVE") // ACTIVE, SUSPENDED, BANNED
+  vipTier              String    @default("Base")
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  wallet           Wallet?
+  rentalSessions   RentalSession[]
+  paymentOrders    PaymentOrder[]
+  promoRedemptions PromoRedemption[]
+
+  @@index([apiKey])
+}
+
+model Wallet {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  balance         Decimal  @default(0.0000) @db.Decimal(12, 4)
+  reservedBalance Decimal  @default(0.0000) @db.Decimal(12, 4)
+  currency        String   @default("USD")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  transactions LedgerTransaction[]
+}
+
+model LedgerTransaction {
+  id            String          @id @default(uuid())
+  walletId      String
+  wallet        Wallet          @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  type          TransactionType
+  amount        Decimal         @db.Decimal(12, 4)
+  balanceBefore Decimal         @db.Decimal(12, 4)
+  balanceAfter  Decimal         @db.Decimal(12, 4)
+  referenceType String          // RENTAL, TOPUP, MANUAL_ADJUSTMENT, REFUND
+  referenceId   String?
+  description   String?
+  createdAt     DateTime        @default(now())
+
+  @@index([walletId])
+  @@index([referenceId])
+}
+
+model Domain {
+  id           String   @id @default(uuid())
+  domainName   String   @unique // e.g. mailnestpro.com, hihinail.com
+  isPrivate    Boolean  @default(false)
+  isActive     Boolean  @default(true)
+  defaultPrice Decimal  @default(0.0500) @db.Decimal(8, 4)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  rentalSessions RentalSession[]
+  servicePrices  DomainServicePrice[]
+}
+
+model ServiceItem {
+  id           String   @id @default(uuid())
+  code         String   @unique // tg, ig, fb, tinder, google, openai, wa, other
+  name         String   // Telegram, Instagram, Facebook, Tinder, Google, ChatGPT
+  icon         String   @default("mail")
+  basePrice    Decimal  @default(0.0500) @db.Decimal(8, 4)
+  otpPattern   String?  // Regex pattern or format example (e.g. \d{5,6})
+  extractUrl   Boolean  @default(true)
+  priorityMode Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  rentalSessions RentalSession[]
+  domainPrices   DomainServicePrice[]
+}
+
+model DomainServicePrice {
+  id            String      @id @default(uuid())
+  domainId      String
+  domain        Domain      @relation(fields: [domainId], references: [id], onDelete: Cascade)
+  serviceItemId String
+  serviceItem   ServiceItem @relation(fields: [serviceItemId], references: [id], onDelete: Cascade)
+  price         Decimal     @db.Decimal(8, 4)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([domainId, serviceItemId])
+}
+
+model EmailAccount {
+  id             String             @id @default(uuid())
+  email          String             @unique
+  password       String
+  provider       String             // GMAIL, OUTLOOK, YAHOO, AOL, GMX, CUSTOM
+  imapHost       String
+  imapPort       Int                @default(993)
+  imapSecure     Boolean            @default(true)
+  proxyUrl       String?
+  status         EmailAccountStatus @default(ACTIVE)
+  lastCheckedAt  DateTime?
+  checkError     String?
+  usedServices   String[]           @default([])
+  blockedServices String[]          @default([])
+  isExclusive    Boolean            @default(false)
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  rentalSessions RentalSession[]
+
+  @@index([provider])
+  @@index([status])
+}
+
+model RentalSession {
+  id              Int           @id @default(autoincrement()) // Maps to mailId in SMSBower API
+  userId          String
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  emailAddress    String        @unique
+  domainId        String?
+  domain          Domain?       @relation(fields: [domainId], references: [id])
+  emailAccountId  String?
+  emailAccount    EmailAccount? @relation(fields: [emailAccountId], references: [id])
+  serviceCode     String
+  serviceItem     ServiceItem?  @relation(fields: [serviceCode], references: [code])
+  price           Decimal       @db.Decimal(8, 4)
+  status          RentalStatus  @default(WAITING_CODE)
+  code            String?       // Extracted OTP code
+  verificationUrl String?       // Extracted magic login or verify URL
+  allowRecode     Boolean       @default(true)
+  recodeCount     Int           @default(0)
+  countOfOtp      Int           @default(1)
+  lastProcessedUid Int?
+  previousCodes   String[]      @default([])
+  receivedOtps    Json?         // History of all OTPs received in this session
+  expiresAt       DateTime
+  receivedAt      DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  receivedEmails ReceivedEmail[]
+
+  @@index([userId])
+  @@index([emailAddress])
+  @@index([status])
+  @@index([emailAccountId])
+}
+
+model ReceivedEmail {
+  id              String         @id @default(uuid())
+  rentalSessionId Int?
+  rentalSession   RentalSession? @relation(fields: [rentalSessionId], references: [id], onDelete: SetNull)
+  recipientEmail  String
+  senderEmail     String
+  subject         String
+  textBody        String?        @db.Text
+  htmlBody        String?        @db.Text
+  extractedCode   String?
+  extractedUrl    String?
+  rawHeaders      Json?
+  receivedAt      DateTime       @default(now())
+
+  @@index([recipientEmail])
+  @@index([rentalSessionId])
+}
+
+model PaymentOrder {
+  id             String         @id @default(uuid())
+  userId         String
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gateway        PaymentGateway
+  amount         Decimal        @db.Decimal(12, 4)
+  currency       String         @default("USD")
+  gatewayOrderId String?
+  transactionId  String?
+  status         PaymentStatus  @default(PENDING)
+  rawPayload     String?        @db.Text
+  createdAt      DateTime       @default(now())
+  completedAt    DateTime?
+
+  @@index([userId])
+  @@index([gatewayOrderId])
+}
+
+model BlockedServiceRule {
+  id        String   @id @default(uuid())
+  keyword   String   // e.g. "google", "telegram", "chase", "paypal"
+  ruleType  String   @default("KEYWORD") // KEYWORD, DOMAIN, SENDER_EMAIL
+  reason    String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model PromoCode {
+  id           String    @id @default(uuid())
+  code         String    @unique // e.g. DROP50, WELCOME5
+  name         String
+  rewardType   String    @default("CASH") // CASH, BONUS
+  rewardValue  Decimal   @default(0.0000) @db.Decimal(12, 4)
+  currency     String    @default("USD")
+  maxReward    Decimal?  @db.Decimal(12, 4)
+  maxUses      Int       @default(0) // 0 = unlimited
+  usedCount    Int       @default(0)
+  perUserLimit Int       @default(1)
+  startAt      DateTime?
+  endAt        DateTime?
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  redemptions PromoRedemption[]
+}
+
+model PromoRedemption {
+  id             String    @id @default(uuid())
+  promoCodeId    String
+  promoCode      PromoCode @relation(fields: [promoCodeId], references: [id], onDelete: Cascade)
+  userId         String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amountCredited Decimal   @db.Decimal(12, 4)
+  redeemedAt     DateTime  @default(now())
+
+  @@unique([promoCodeId, userId])
+}
+
+model SiteContent {
+  key       String   @id // "faq", "contact", "partners", "public_offer", "privacy_policy", "floating_widget"
+  data      Json
+  updatedAt DateTime @updatedAt
+}
