@@ -65,13 +65,13 @@ Optimized to run seamlessly on a low-cost Ubuntu VPS (**2 vCore, 2GB RAM, 60GB S
 
 ## 🌐 Domain DNS Setup (Prerequisites)
 
-Point your domain (e.g. `dropotp.com`) to your server IP (`162.141.78.116`):
+Point your domain (e.g. `yourdomain.com`) to your server IP:
 
 | Type | Host / Name | Value / Target | Priority | TTL |
 | :--- | :--- | :--- | :--- | :--- |
-| **A** | `@` | `162.141.78.116` | — | Automatic |
-| **A** | `mail` | `162.141.78.116` | — | Automatic |
-| **MX** | `@` | `mail.dropotp.com` | **10** | Automatic |
+| **A** | `@` | `YOUR_SERVER_IP` | — | Automatic |
+| **A** | `mail` | `YOUR_SERVER_IP` | — | Automatic |
+| **MX** | `@` | `mail.yourdomain.com` | **10** | Automatic |
 
 *(Note: In Cloudflare, make sure the MX record and `mail` A record have Proxy status set to **DNS Only / Gray Cloud** so that inbound SMTP port 25 is not blocked).*
 
@@ -81,7 +81,7 @@ Point your domain (e.g. `dropotp.com`) to your server IP (`162.141.78.116`):
 
 ### Step 1: Connect to your Ubuntu VPS via SSH
 ```bash
-ssh root@162.141.78.116
+ssh root@YOUR_SERVER_IP
 ```
 
 ### Step 2: Configure 2GB Swap Memory (Crucial for 2GB RAM VPS)
