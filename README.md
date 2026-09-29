@@ -1,8 +1,14 @@
-# Email Address Rental & Instant OTP Reception SaaS (SMSBower Architecture)
+# 📧 DropOTP - Email OTP Rental Platform
 
-A production-ready, high-performance SaaS platform for temporary & dedicated email address rentals with instant OTP code extraction, real-time WebSockets, SMSBower-compatible REST API, Bangladeshi & Global payment gateways (bKash, Nagad, Paymento.io, Maxelpay.com), and an administration dashboard.
+> A production-ready, high-performance SaaS platform for temporary & dedicated email address rentals with instant OTP code extraction, real-time WebSockets, SMSBower-compatible REST API, multiple payment gateways, and comprehensive administration dashboard.
 
-Optimized to run seamlessly on a low-cost Ubuntu VPS (**2 vCore, 2GB RAM, 60GB SSD**) using Docker Compose and automated 2GB Swap space.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
+
+## ⚡ Quick Start
+
+Optimized to run seamlessly on a low-cost Ubuntu VPS (**2 vCore, 2GB RAM, 60GB SSD**) using Docker Compose.
 
 ---
 
@@ -141,6 +147,224 @@ Once the server is running, you can test the inbound SMTP engine on Port 25 loca
 
 ## 🔐 Default Admin Access
 
-- **Dashboard URL**: `http://YOUR_SERVER_IP` or `https://dropotp.com`
-- **Default Admin Email**: `admin@dropotp.com` (configured in `.env`)
-- **Default Admin Password**: `Sh330717@` (configured in `.env`)
+- **Dashboard URL**: `http://YOUR_SERVER_IP` or `https://yourdomain.com`
+- **Default Admin Email**: Configured in `.env` file (`ADMIN_EMAIL`)
+- **Default Admin Password**: Configured in `.env` file (`ADMIN_PASSWORD`)
+
+**⚠️ Important**: Change default credentials in production!
+
+---
+
+## 📚 Tech Stack
+
+### Frontend
+- **React 18** with TypeScript
+- **Tailwind CSS** for styling
+- **Vite** for fast development
+- **Socket.io Client** for real-time updates
+- **Axios** for API calls
+
+### Backend
+- **Node.js** with Express
+- **Prisma ORM** with PostgreSQL
+- **Redis** for caching & pub/sub
+- **Socket.io** for WebSocket connections
+- **SMTP Server** for inbound emails
+
+### Infrastructure
+- **Docker & Docker Compose**
+- **Caddy** as reverse proxy with auto SSL
+- **PostgreSQL** database
+- **Redis** for caching
+
+---
+
+## 💳 Payment Gateway Integration
+
+- **bKash** - Tokenized checkout (Bangladesh)
+- **Nagad** - Payment gateway (Bangladesh)
+- **Paymento.io** - Global card payments
+- **Maxelpay.com** - Cryptocurrency payments (USDT, BTC, ETH)
+
+---
+
+## 📊 Key Features
+
+### For Users
+✅ Instant email rental with OTP extraction  
+✅ Real-time WebSocket notifications  
+✅ Multiple payment methods  
+✅ Service-specific email addresses  
+✅ Auto-refund on timeout  
+✅ Transaction history  
+✅ API key management  
+
+### For Admins
+✅ Complete user management  
+✅ Service & domain configuration  
+✅ Email pool management  
+✅ Live email monitoring  
+✅ Financial ledger tracking  
+✅ Promo code generation  
+✅ System overview dashboard  
+
+---
+
+## 🔧 Configuration
+
+Edit the `.env` file with your settings:
+
+```bash
+# Server Configuration
+BASE_URL=https://yourdomain.com
+API_URL=https://yourdomain.com/api
+JWT_SECRET=your_secure_random_secret_min_32_chars
+
+# Admin Account
+ADMIN_EMAIL=admin@yourdomain.com
+ADMIN_PASSWORD=your_secure_password
+
+# Database
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=your_postgres_password
+POSTGRES_DB=otp_platform
+
+# Redis
+REDIS_PASSWORD=your_redis_password
+
+# SMTP
+SMTP_DOMAIN=yourdomain.com
+
+# Payment Gateways (Configure as needed)
+BKASH_APP_KEY=your_bkash_key
+NAGAD_MERCHANT_ID=your_nagad_id
+PAYMENTO_API_KEY=your_paymento_key
+MAXELPAY_API_KEY=your_maxelpay_key
+```
+
+---
+
+## 📖 API Documentation
+
+### SMSBower Compatible API Endpoints
+
+#### Get Activation
+```http
+GET /api/mail/getActivation?api_key=YOUR_KEY&service=tg
+```
+
+#### Get OTP Code
+```http
+GET /api/mail/getCode?api_key=YOUR_KEY&mailId=123
+```
+
+#### Set Status
+```http
+GET /api/mail/setStatus?api_key=YOUR_KEY&mailId=123&status=3
+```
+Status codes: `2` (cancel), `3` (complete), `5` (extend)
+
+#### Get Balance
+```http
+GET /api/mail/getBalance?api_key=YOUR_KEY
+```
+
+#### Get Domains
+```http
+GET /api/mail/getDomains?api_key=YOUR_KEY
+```
+
+#### Get Pricing
+```http
+GET /api/mail/getPriceRests?api_key=YOUR_KEY
+```
+
+---
+
+## 🛡️ Security Best Practices
+
+1. **Change default credentials** in `.env` file
+2. **Use strong passwords** for database and Redis
+3. **Enable firewall** and only allow necessary ports
+4. **Use HTTPS** in production (Caddy auto-enables)
+5. **Regularly update** Docker images and dependencies
+6. **Backup database** regularly
+7. **Monitor logs** for suspicious activities
+
+---
+
+## 📁 Project Structure
+
+```
+DropOTP/
+├── backend/                 # Node.js backend
+│   ├── src/
+│   │   ├── routes/         # API routes
+│   │   ├── services/       # Business logic
+│   │   ├── middlewares/    # Auth & validation
+│   │   └── db/             # Database connections
+│   └── prisma/             # Database schema
+├── frontend/               # React frontend
+│   ├── src/
+│   │   ├── components/     # UI components
+│   │   ├── pages/          # Page components
+│   │   └── context/        # React context
+│   └── public/             # Static assets
+├── caddy/                  # Reverse proxy config
+├── scripts/                # Utility scripts
+├── docker-compose.yml      # Docker orchestration
+└── .env.example           # Environment template
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 🐛 Troubleshooting
+
+### Container fails to start
+```bash
+# Check logs
+docker compose logs backend
+docker compose logs frontend
+
+# Restart services
+docker compose restart
+```
+
+### Database connection issues
+```bash
+# Check PostgreSQL container
+docker compose ps postgres
+
+# Reset database
+docker compose down -v
+docker compose up -d
+```
+
+### Email not receiving
+1. Check MX records are configured correctly
+2. Verify port 25 is open: `telnet YOUR_IP 25`
+3. Check SMTP logs: `docker compose logs -f backend`
+
+---
+
+## 💬 Support
+
+For issues and questions:
+- Open an issue on GitHub
+- Check existing issues for solutions
+
+---
+
+**Made with ❤️ for the OTP rental community**
