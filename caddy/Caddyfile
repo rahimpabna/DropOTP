@@ -1,0 +1,45 @@
+{
+    email {$ADMIN_EMAIL:admin@dropotp.com}
+}
+
+http://162.141.78.116 {
+    handle /socket.io/* {
+        reverse_proxy backend:4000
+    }
+
+    handle /api/* {
+        reverse_proxy backend:4000
+    }
+
+    handle {
+        reverse_proxy frontend:80
+    }
+
+    encode gzip zstd
+}
+
+dropotp.com, www.dropotp.com {
+    # WebSocket and Realtime Connection
+    handle /socket.io/* {
+        reverse_proxy backend:4000
+    }
+
+    # Backend API Endpoints (including SMSBower compatibility routes)
+    handle /api/* {
+        reverse_proxy backend:4000
+    }
+
+    # Frontend Static UI (React + Refine)
+    handle {
+        reverse_proxy frontend:80
+    }
+
+    encode gzip zstd
+
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options SAMEORIGIN
+        X-XSS-Protection "1; mode=block"
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+}

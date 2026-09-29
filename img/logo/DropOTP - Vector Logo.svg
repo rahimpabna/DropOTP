@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090D16"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+
+    <!-- Emerald Glow Gradient -->
+    <radialGradient id="iconGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Droplet Tech Gradient -->
+    <linearGradient id="dropGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="40%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Shield Border Gradient -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0.2"/>
+    </linearGradient>
+
+    <!-- Text Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <style>
+    .brand-title { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 800; font-size: 88px; letter-spacing: -2px; }
+    .brand-tagline { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 500; font-size: 20px; letter-spacing: 3.5px; fill: #94A3B8; }
+    .badge-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 700; font-size: 22px; fill: #34D399; }
+  </style>
+
+  <!-- Canvas Background -->
+  <rect width="1000" height="320" rx="24" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Grid Lines for Tech Aesthetic -->
+  <path d="M 0 80 L 1000 80 M 0 160 L 1000 160 M 0 240 L 1000 240" stroke="#1E293B" stroke-width="1" opacity="0.4"/>
+  <path d="M 200 0 L 200 320 M 400 0 L 400 320 M 600 0 L 600 320 M 800 0 L 800 320" stroke="#1E293B" stroke-width="1" opacity="0.4"/>
+
+  <!-- Glowing Aura behind Logo Mark -->
+  <circle cx="160" cy="160" r="140" fill="url(#iconGlow)"/>
+
+  <!-- LOGO ICON CONTAINER -->
+  <g transform="translate(60, 60)">
+    <!-- Squircle Frame -->
+    <rect x="0" y="0" width="200" height="200" rx="46" fill="#131D2E" stroke="url(#borderGrad)" stroke-width="3"/>
+    
+    <!-- Droplet Shape -->
+    <!-- Starts from top tip (100, 36), curves down to (154, 115), rounded base at (100, 164), curves up to (46, 115) -->
+    <path d="M 100 36 
+             C 100 36, 154 100, 154 124 
+             A 54 54 0 1 1 46 124 
+             C 46 100, 100 36, 100 36 Z" 
+          fill="url(#dropGrad)"/>
+
+    <!-- Inset Tech Envelope / Mail Core inside the Droplet -->
+    <g transform="translate(65, 104)">
+      <!-- Mail base box -->
+      <rect x="0" y="0" width="70" height="46" rx="8" fill="#0B101B" opacity="0.95"/>
+      <!-- Mail Flap Fold Lines -->
+      <path d="M 4 5 L 35 26 L 66 5" fill="none" stroke="#34D399" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Small Padlock / Code Dot accent -->
+      <circle cx="35" cy="34" r="3.5" fill="#34D399"/>
+    </g>
+
+    <!-- 4 Digital Verification Pins / OTP Dots floating above the envelope -->
+    <circle cx="76" cy="85" r="4.5" fill="#FFFFFF"/>
+    <circle cx="92" cy="85" r="4.5" fill="#FFFFFF"/>
+    <circle cx="108" cy="85" r="4.5" fill="#FFFFFF"/>
+    <circle cx="124" cy="85" r="4.5" fill="#FFFFFF"/>
+  </g>
+
+  <!-- TYPOGRAPHY / BRAND NAME -->
+  <g transform="translate(300, 155)">
+    <!-- "Drop" in Pristine Pure White -->
+    <text x="0" y="28" class="brand-title" fill="#FFFFFF">Drop<tspan fill="#10B981">OTP</tspan></text>
+    
+    <!-- Domain Extension Badge -->
+    <g transform="translate(420, -45)">
+      <rect x="0" y="0" width="82" height="38" rx="10" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="1.8"/>
+      <text x="14" y="26" class="badge-text">.com</text>
+    </g>
+
+    <!-- Tagline & Subtext -->
+    <text x="2" y="74" class="brand-tagline">INSTANT EMAIL &amp; OTP RECEPTION SAAS</text>
+
+    <!-- Trust Feature Indicators -->
+    <g transform="translate(2, 102)" opacity="0.85">
+      <circle cx="4" cy="-5" r="3" fill="#10B981"/>
+      <text x="14" y="0" font-family="'Inter', sans-serif" font-size="14" font-weight="500" fill="#64748B">Real-Time Push</text>
+      
+      <circle cx="140" cy="-5" r="3" fill="#10B981"/>
+      <text x="150" y="0" font-family="'Inter', sans-serif" font-size="14" font-weight="500" fill="#64748B">Private Rentals</text>
+      
+      <circle cx="270" cy="-5" r="3" fill="#10B981"/>
+      <text x="280" y="0" font-family="'Inter', sans-serif" font-size="14" font-weight="500" fill="#64748B">Developer API</text>
+    </g>
+  </g>
+</svg>
